@@ -1,0 +1,25 @@
+{
+  "name": "edc-split-images",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stierma1/edc-split-images.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stierma1/edc-split-images/issues"
+  },
+  "homepage": "https://github.com/stierma1/edc-split-images#readme",
+  "dependencies": {
+    "basic-distributed-computation": "^1.0.2",
+    "edc-start-split-images": "^1.0.0",
+    "jimp": "^0.2.19",
+    "virtual-frames-edc": "^1.0.1"
+  }
+}

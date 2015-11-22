@@ -3,10 +3,11 @@
 var Worker = require("basic-distributed-computation").Worker;
 var VirtualFrame = require("virtual-frames-edc");
 var SplitImagesSP = require("edc-start-split-images");
+var Jimp = require("jimp");
 
 class SplitImages extends Worker {
   constructor(parent){
-    super("create-image-frames", parent);
+    super("split-images", parent);
   }
 
   work(req, inputKey, outputKey){
@@ -20,7 +21,7 @@ class SplitImages extends Worker {
       Jimp.read(inputVal.image)
         .then((image) => {
           return Promise.all(inputVal.frames.map((frame) => {
-            return (new VirtualFrame(frame.width, frame.height, frame.xOffset, frame.yOffset, frame.minX, frame.minY, frame.resize)).makeConcrete(image);
+            return (new VirtualFrame(frame.maxX, frame.maxY, frame.xOffset, frame.yOffset, frame.width, frame.height, frame.minX, frame.minY, frame.resize)).makeConcrete(image);
           }));
         })
         .then((images) => {
@@ -82,4 +83,4 @@ class SplitImages extends Worker {
   }
 }
 
-module.exports = CreateFrames;
+module.exports = SplitImages;

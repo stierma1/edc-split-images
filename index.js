@@ -29,9 +29,9 @@ class SplitImages extends Worker {
         })
         .then((images) => {
           if(outputKey){
-            req.body[outputKey] = images;
+            req.body[outputKey] = [images];
           } else {
-            req.body = images;
+            req.body = [images];
           }
           req.next();
         })

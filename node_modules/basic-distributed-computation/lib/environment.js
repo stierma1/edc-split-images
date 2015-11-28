@@ -11,6 +11,8 @@ class Environment extends EE{
     this.applications = [];
     this.knownEnvironments = {};
     this._workerRoutes = [];
+    this.globalStorage = config.globalStorage;
+    this.sessionStorage = config.sessionStorage;
 
     for(var i in applicationList){
       var appCon = require(applicationList[i]);
@@ -48,6 +50,22 @@ class Environment extends EE{
       this.advertise();
     }, config.advertisementInterval || 15000);
 
+  }
+
+  saveToGlobalStore(data){
+    throw new Error("Not Implemented");
+  }
+
+  getDataFromSessionStore(sessionKey, search){
+    throw new Error("Not Implemented");
+  }
+
+  saveToSessionStore(sessionKey, meta, data){
+    throw new Error("Not Implemented");
+  }
+
+  getDataFromGlobalStore(search){
+    throw new Error("Not Implemented");
   }
 
   advertise(){

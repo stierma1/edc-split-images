@@ -7,13 +7,6 @@ class StartingPoint {
     this.rules = [];
   }
 
-  get(funcId){
-    if(funcId){
-      return this.rules[funcId];
-    }
-    return this.rules;
-  }
-
   add(idx, rule){
     this.rules.splice(idx, 0, rule)
     return this;
@@ -59,6 +52,7 @@ class StartingPoint {
     var newReq = this.createRequest(body, requestCon);
     newReq.depth = parentRequest.depth;
     newReq.predecessorUuid = parentRequest.uuid;
+    newReq.sessionKey = parentRequest.sessionKey;
     return newReq;
   }
 }

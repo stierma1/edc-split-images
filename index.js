@@ -24,6 +24,11 @@ class SplitImages extends Worker {
             return (new VirtualFrame(frame.maxX, frame.maxY, frame.xOffset, frame.yOffset, frame.width, frame.height, frame.minX, frame.minY, frame.resize)).makeConcrete(image);
           }));
         })
+        .then((images) =>{
+          return this.saveToSession(req, images).then(() => {
+            return images;
+          });
+        })
         .then((images) => {
           if(outputKey){
             req.body[outputKey] = images;

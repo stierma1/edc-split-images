@@ -5,6 +5,7 @@ class Request{
   constructor(serialized, parent){
     var req = JSON.parse(serialized);
     this.uuid = uuid.v4();
+    this.sessionKey = req.sessionKey || uuid.v4();
     this.predecessorUuid = req.predecessorUuid;
     this.origination = req.origination;
     this.correlationId = req.correlationId;
@@ -24,6 +25,10 @@ class Request{
     return this;
   }
 
+  getCurrentPath(){
+    return this.paths[this.currentIdx];
+  }
+
   next(){
     this.choreIdx = (this.choreIdx + 1) % this.chores.length;
     this.parent.emit([this.chores[this.choreIdx]], this);
@@ -31,6 +36,7 @@ class Request{
 
   serialize(){
     var out = {};
+    out.sessionKey = this.sessionKey;
     out.uuid = this.uuid;
     out.predecessorUuid = this.predecessorUuid;
     out.depth = this.depth;

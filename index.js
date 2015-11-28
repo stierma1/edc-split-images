@@ -25,9 +25,7 @@ class SplitImages extends Worker {
           }));
         })
         .then((images) =>{
-          return this.saveToSession(req, images).then(() => {
-            return images;
-          });
+          return this.saveToSession(req, images);
         })
         .then((images) => {
           if(outputKey){
